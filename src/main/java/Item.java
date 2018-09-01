@@ -1,9 +1,12 @@
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Item {
 	
 	private String itemName;
 	private int quantity;
 	private double price;
+	private NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 	
 	
 	
@@ -26,7 +29,7 @@ public class Item {
 	}
 	
 	public String toString() {
-		return "ItemName: " + itemName + "\tPrice: " + price +  "\tQuantity: " + quantity + "\n";
+		return "Item: " + itemName + "\t\tPrice: " + currency.format(price) +  "\tQuantity: " + quantity + "\n";
 	}
 
 

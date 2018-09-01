@@ -2,12 +2,20 @@ import java.util.ArrayList;
 
 public class Cart {
 
-	ArrayList<Item> shoppingCart = new ArrayList<>();
+	ArrayList<Item> shoppingCart; 
+	
+	public Cart() {
+		shoppingCart = new ArrayList<>();
+	}
 	
 	public void addItemToCart(Item itemName) {
 		shoppingCart.add(itemName);
-		
 	}
+	
+	public void addItemToCart(String itemName, double itemPrice, int itemQuantity) {
+		shoppingCart.add(new Item(itemName, itemPrice, itemQuantity));
+	}
+	
 
 	public String checkItemsInCart() {
 		String itemsInCart = "";
@@ -25,10 +33,10 @@ public class Cart {
 		return priceTotal;
 	}
 
-	public void removeItemFromCart(String itemName) {
+	public void removeItemFromCart(String itemToRemove) {
 		for(int i = shoppingCart.size() - 1; i >= 0; i--) {
 			Item item = shoppingCart.get(i);
-			if (itemName.equals(item.getItemName())) {
+			if (itemToRemove.equalsIgnoreCase(item.getItemName())) {
 				shoppingCart.remove(i);
 			}
 		}
