@@ -14,27 +14,36 @@ public class ShopApp {
 
 	public static void shopping() {
 		System.out.println("Welcome to Nozama!");
+		continueShopping();
+		System.out.println("Thank you for shopping today.\nPlease pay " 
+		+ currency.format(usersCart.checkPriceOfCart()) + " at checkout.");
+	}
+	
+	public static void continueShopping() {
 		boolean wantsToCheckout = false;
 		do {
 			System.out.println(displayCart());
 			System.out.print("Would you like to continue shopping? (Y/N)  ");
-			String userEnteredToContinueShopping = input.nextLine();
-			if (userEnteredToContinueShopping.equalsIgnoreCase("y")) {
-				modifyCart();
-			} else if (userEnteredToContinueShopping.equalsIgnoreCase("n")) {
-				wantsToCheckout = true;
-			} else {
-				System.out.println("Invalid response. Please enter Y or N");
-			}
+			wantsToCheckout = checkToContinueShopping();
 		} while (!wantsToCheckout);
-		System.out.println("Thank you for shopping today.\nPlease pay " 
-		+ currency.format(usersCart.checkPriceOfCart()) + " at checkout.");
+	}
+	
+	public static boolean checkToContinueShopping() {
+		String userEnteredToContinueShopping = input.nextLine();
+		if (userEnteredToContinueShopping.equalsIgnoreCase("y")) {
+			modifyCart();
+		} else if (userEnteredToContinueShopping.equalsIgnoreCase("n")) {
+			return true;
+		} else {
+			System.out.println("Invalid response. Please enter Y or N");
+		}
+		return false;
 	}
 
 	public static String displayCart() {
-		String itemsInCart = usersCart.checkItemsInCart();
-		if (itemsInCart.equals("")) {
-			return "Your cart is currently empty.\n";
+		String itemsInCart = "Current Cart\n" + usersCart.checkItemsInCart();
+		if (itemsInCart.equals("Current Cart\n")) {
+			return itemsInCart + "Your cart is currently empty.\n";
 		} else {
 			itemsInCart += "Total price " + currency.format(usersCart.checkPriceOfCart()) + "\n";
 			return itemsInCart;
