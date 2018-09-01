@@ -19,7 +19,7 @@ public class ShopApp {
 		+ currency.format(usersCart.checkPriceOfCart()) + " at checkout.");
 	}
 	
-	public static void continueShopping() {
+	private static void continueShopping() {
 		boolean wantsToCheckout = false;
 		do {
 			System.out.println(displayCart());

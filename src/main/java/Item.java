@@ -8,8 +8,6 @@ public class Item {
 	private double price;
 	private NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 	
-	
-	
 	public String getItemName() {
 		return itemName;
 	}
@@ -29,7 +27,18 @@ public class Item {
 	}
 	
 	public String toString() {
-		return "Item: " + itemName + "\t\tPrice: " + currency.format(price) +  "\tQuantity: " + quantity + "\n";
+		String tabsName = "";
+		int itemNameLength = itemName.length();
+		for (int i = 24; i > 0; i -= 8) {
+			if (itemNameLength <= i) {
+				tabsName += "\t";
+			}
+		}
+		String tabsPrice = "\t";
+		if (price < 1000) {
+			tabsPrice += "\t";
+		}
+		return "Item:  " + itemName + tabsName +"Price: " + currency.format(price) + tabsPrice + "Quantity: " + quantity + "\n";
 	}
 
 
